@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,9 +26,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen p-0 sm:p-8 flex flex-col gap-5 items-center justify-center`}
       >
-        {children}
+        <PrimeReactProvider>
+          <img
+            src="./logo.png"
+            className="max-w-60 w-full mb-10 mt-10"
+            alt=""
+          />
+          {children}
+        </PrimeReactProvider>
       </body>
     </html>
   );
