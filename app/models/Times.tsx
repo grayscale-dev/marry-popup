@@ -80,24 +80,11 @@ export const filteredStartTimes = (
   eventIndex: number
 ) => {
   if (eventIndex == 0) {
-    return times.filter((time) => time.code <= 12);
+    return times;
   }
   return times.filter((time) => time.code >= events[0].endTime.code);
 };
 
 export const filteredEndTimes = (events: EventClass[], eventIndex: number) => {
-  if (eventIndex == 0) {
-    return times.filter(
-      (time) =>
-        time.code >= events[0]?.startTime.code + 4 &&
-        time.code <= events[0].startTime.code + 10
-    );
-  }
-  return times.filter(
-    (time) =>
-      time.code > events[1]?.startTime.code &&
-      time.code <=
-        events[1].startTime.code +
-          (10 - (events[0].endTime.code - events[0].startTime.code))
-  );
+  return times.filter((time) => time.code > events[eventIndex]?.startTime.code);
 };

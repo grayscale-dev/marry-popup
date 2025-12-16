@@ -12,9 +12,10 @@ export const ChildrenAndInfantsSelector: React.FC<BookingProps> = ({
           {Array.from({ length: 20 }, (_, i) => (
             <button
               key={i}
+              id={`children-selector-${i + 1}`}
               className={`bg-gray-100 rounded-md p-2 hover:bg-white cursor-pointer hover:shadow-md transform-color duration-300 transform-shadow border ${
                 booking?.children == i + 1
-                  ? "border-[#F5DEDF] bg-white shadow-md"
+                  ? "border-[#F5DEDF] bg-white shadow-md active"
                   : "border-gray-300"
               }`}
               onClick={() => {
@@ -32,13 +33,14 @@ export const ChildrenAndInfantsSelector: React.FC<BookingProps> = ({
         <p className="font-thin mb-4">
           How many of those children are 0-18 months?
         </p>
-        <div className="grid grid-cols-5 sm:grid-cols-10 gap-3">
+        <div className="grid grid-cols-5 sm:grid-cols-10 gap-3 infant-options">
           {Array.from({ length: booking?.children + 1 }, (_, i) => (
             <button
               key={i}
+              id={`infant-selector-${i}`}
               className={`bg-gray-100 rounded-md p-2 hover:bg-white cursor-pointer hover:shadow-md transform-color duration-300 transform-shadow border ${
                 booking?.infants == i
-                  ? "border-[#F5DEDF] bg-white shadow-md"
+                  ? "border-[#F5DEDF] bg-white shadow-md active"
                   : "border-gray-300"
               }`}
               onClick={() => updateBooking("infants", i)}

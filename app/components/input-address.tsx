@@ -58,13 +58,13 @@ export const InputAddress: React.FC<BookingEventProps> = ({
         className="block w-full p-inputtext-sm"
         variant="filled"
         itemTemplate={(item: any) => (
-          <div>
+          <div className={item.index}>
             <div className="font-medium">{item.displayName?.text}</div>
             <div className="text-xs text-gray-500">{item.formattedAddress}</div>
           </div>
         )}
         pt={{
-          input: { root: { className: "w-full" } },
+          input: { root: { className: `w-full address-input-${eventIndex}` } },
         }}
         invalid={
           booking.addressInvalid(eventIndex) && booking.showInvalidFields

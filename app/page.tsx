@@ -77,12 +77,15 @@ export default function Home() {
                 e.preventDefault();
                 submit();
               }}
+              type="submit"
             >
               Continue to summary
             </button>
             {booking.showInvalidFields && (
-              <p className="text-red-500">
-                Please review the highlighted fields above.
+              <p className="text-red-500" id="error-message">
+                {booking.durationsInvalid != null
+                  ? booking.durationsInvalid
+                  : "Please review the highlighted fields above."}
               </p>
             )}
           </>
@@ -112,19 +115,28 @@ export default function Home() {
               <h2 className="text-lg mb-2">Customer</h2>
               <div className="flex justify-between items-center gap-3 text-neutral-600 w-full">
                 <p className="opacity-75">Name</p>
-                <h1 className="font-semibold tracking-wider">
+                <h1
+                  className="font-semibold tracking-wider"
+                  data-testid="customer-name"
+                >
                   {booking.customer.firstName + " " + booking.customer.lastName}
                 </h1>
               </div>
               <div className="flex justify-between items-center gap-3 text-neutral-600 w-full">
                 <p className="opacity-75">Phone Number</p>
-                <h1 className="font-semibold tracking-wider">
+                <h1
+                  className="font-semibold tracking-wider"
+                  data-testid="customer-phone"
+                >
                   {booking.customer.phoneNumber}
                 </h1>
               </div>
               <div className="flex justify-between items-center gap-3 text-neutral-600 w-full">
                 <p className="opacity-75">Email</p>
-                <h1 className="font-semibold tracking-wider">
+                <h1
+                  className="font-semibold tracking-wider"
+                  data-testid="customer-email"
+                >
                   {booking.customer.email}
                 </h1>
               </div>
@@ -140,13 +152,19 @@ export default function Home() {
                 </h2>
                 <div className="flex justify-between items-center gap-3 text-neutral-600 w-full">
                   <p className="opacity-75">Address</p>
-                  <h1 className="font-semibold tracking-wider">
+                  <h1
+                    className="font-semibold tracking-wider"
+                    data-testid={`event-${idx}-address`}
+                  >
                     {event.address}
                   </h1>
                 </div>
                 <div className="flex justify-between items-center gap-3 text-neutral-600 w-full">
                   <p className="opacity-75">Date</p>
-                  <h1 className="font-semibold tracking-wider">
+                  <h1
+                    className="font-semibold tracking-wider"
+                    data-testid={`event-${idx}-date`}
+                  >
                     {booking.events[0].date?.toLocaleDateString("en-US", {
                       month: "short",
                       day: "numeric",
@@ -156,7 +174,10 @@ export default function Home() {
                 </div>
                 <div className="flex justify-between items-center gap-3 text-neutral-600 w-full">
                   <p className="opacity-75">Time</p>
-                  <h1 className="font-semibold tracking-wider">
+                  <h1
+                    className="font-semibold tracking-wider"
+                    data-testid={`event-${idx}-time`}
+                  >
                     {event.startTime.name + " - " + event.endTime.name}
                   </h1>
                 </div>
@@ -166,7 +187,10 @@ export default function Home() {
             <div className="flex flex-col gap-1 bg-gray-100 p-5 rounded-xl">
               <div className="flex justify-between items-center gap-3 text-neutral-600 w-full">
                 <p className="opacity-75">Total Children</p>
-                <h1 className="font-semibold tracking-wider">
+                <h1
+                  className="font-semibold tracking-wider"
+                  data-testid="total-children"
+                >
                   {calcs.totalKids + calcs.totalInfants}{" "}
                   {calcs.totalInfants > 0 && (
                     <span className="text-gray-400">
@@ -177,20 +201,29 @@ export default function Home() {
               </div>
               <div className="flex justify-between items-center gap-3 text-neutral-600 w-full">
                 <p className="opacity-75">Total Nannies</p>
-                <h1 className="font-semibold tracking-wider">
+                <h1
+                  className="font-semibold tracking-wider"
+                  data-testid="total-nannies"
+                >
                   {calcs.totalNannies}
                 </h1>
               </div>
               <div className="flex justify-between items-center gap-3 text-neutral-600 w-full">
                 <p className="opacity-75">Total Hours</p>
-                <h1 className="font-semibold tracking-wider">
+                <h1
+                  className="font-semibold tracking-wider"
+                  data-testid="total-hours"
+                >
                   {calcs.totalHours}
                 </h1>
               </div>
             </div>
             <div className="flex justify-between items-center gap-3 text-neutral-600 w-full px-5">
               <p className="opacity-75">Subtotal</p>
-              <h1 className="font-semibold tracking-wider text-2xl">
+              <h1
+                className="font-semibold tracking-wider text-2xl"
+                data-testid="subtotal"
+              >
                 ${calcs.clientSubtotal}
               </h1>
             </div>
@@ -220,7 +253,7 @@ export default function Home() {
       {!showSummary && (
         <div className="flex justify-between items-center gap-3 text-neutral-600 bg-white p-5 rounded-b-4xl shadow-xl text-center w-full max-w-150 -mt-15 pt-15">
           <p className="opacity-75">Subtotal</p>
-          <h1 className="font-semibold tracking-wider text-2xl">
+          <h1 className="font-semibold tracking-wider text-2xl summary-price">
             ${calcs.clientSubtotal}
           </h1>
         </div>

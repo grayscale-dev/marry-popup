@@ -11,12 +11,13 @@ const ContactInfo: React.FC<BookingProps> = ({ booking, updateBooking }) => {
           <InputText
             value={booking?.customer.firstName}
             onChange={(e) =>
-              updateBooking("customer.firstName", e.target.value)
+              updateBooking("customer.firstName", e.target.value.trim())
             }
             placeholder="John"
             className="block w-full p-inputtext-sm"
             variant="filled"
             invalid={booking.firstNameInvalid && booking.showInvalidFields}
+            id="input-first-name"
           />
         </div>
 
@@ -24,11 +25,14 @@ const ContactInfo: React.FC<BookingProps> = ({ booking, updateBooking }) => {
           <p className="font-thin mb-2">Last Name</p>
           <InputText
             value={booking?.customer.lastName}
-            onChange={(e) => updateBooking("customer.lastName", e.target.value)}
+            onChange={(e) =>
+              updateBooking("customer.lastName", e.target.value.trim())
+            }
             placeholder="Doe"
             className="block w-full p-inputtext-sm"
             variant="filled"
             invalid={booking.lastNameInvalid && booking.showInvalidFields}
+            id="input-last-name"
           />
         </div>
       </div>
@@ -39,23 +43,27 @@ const ContactInfo: React.FC<BookingProps> = ({ booking, updateBooking }) => {
           onChange={(e) =>
             updateBooking("customer.phoneNumber", e.target.value)
           }
-          mask="+1 (999)-999-9999"
-          placeholder="+1 (801)-555-1234"
+          mask="999-999-9999"
+          placeholder="801-555-1234"
           className="block w-full p-inputtext-sm"
           variant="filled"
           invalid={booking.phoneNumberInvalid && booking.showInvalidFields}
+          id="input-phone"
         />
       </div>
       <div className="flex-1">
         <p className="font-thin mb-2">Email</p>
         <InputText
           value={booking.customer.email}
-          onChange={(e) => updateBooking("customer.email", e.target.value)}
+          onChange={(e) =>
+            updateBooking("customer.email", e.target.value.trim())
+          }
           placeholder="janedoe@gmail.com"
           className="block w-full p-inputtext-sm"
           variant="filled"
           type="email"
           invalid={booking.emailInvalid && booking.showInvalidFields}
+          id="input-email"
         />
       </div>
     </>

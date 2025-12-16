@@ -32,23 +32,19 @@ export default defineConfig({
     trace: "on-first-retry",
     testIdAttribute: "data-testid",
     baseURL: "http://localhost:3000",
+    headless: false,
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
-      name: "chromium",
+      name: "Chrome",
       use: { ...devices["Desktop Chrome"] },
     },
 
     {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
-    },
-
-    {
-      name: "webkit",
-      use: { ...devices["Desktop Safari"] },
+      name: "Mobile Chrome",
+      use: { ...devices["Pixel 5"] },
     },
 
     /* Test against mobile viewports. */

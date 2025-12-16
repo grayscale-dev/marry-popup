@@ -43,6 +43,7 @@ const DateTimePicker: React.FC<BookingEventProps> = ({
         pt={calendarPt}
         disabled={eventIndex != 0}
         invalid={booking.dateInvalid && booking.showInvalidFields}
+        id={`date-picker-${eventIndex}`}
       />
       {eventIndex != 0 && (
         <p
@@ -58,7 +59,7 @@ const DateTimePicker: React.FC<BookingEventProps> = ({
           <Dropdown
             value={booking?.events[eventIndex]?.startTime}
             onChange={(e) => updateStartDate(e.value)}
-            options={filteredStartTimes(booking.events, eventIndex)}
+            options={filteredStartTimes(booking?.events, eventIndex)}
             optionLabel="name"
             placeholder="Start Time"
             className="block w-full p-inputtext-sm"
@@ -67,6 +68,7 @@ const DateTimePicker: React.FC<BookingEventProps> = ({
             invalid={
               booking.startTimeInvalid(eventIndex) && booking.showInvalidFields
             }
+            id={`start-time-picker-${eventIndex}`}
           />
         </div>
 
@@ -76,7 +78,7 @@ const DateTimePicker: React.FC<BookingEventProps> = ({
             onChange={(e) => {
               updateBooking(`events.${eventIndex}.endTime`, e.value);
             }}
-            options={filteredEndTimes(booking.events, eventIndex)}
+            options={filteredEndTimes(booking?.events, eventIndex)}
             optionLabel="name"
             placeholder="End Time"
             className="block w-full p-inputtext-sm"
@@ -88,6 +90,7 @@ const DateTimePicker: React.FC<BookingEventProps> = ({
             invalid={
               booking.endTimeInvalid(eventIndex) && booking.showInvalidFields
             }
+            id={`end-time-picker-${eventIndex}`}
           />
         </div>
       </div>

@@ -18,6 +18,7 @@ export class BookingClass {
   get formInvalid() {
     this.showInvalidFields = true;
     return (
+      this.durationsInvalid != null ||
       !this.allAddressesValid ||
       !this.allStartTimesValid ||
       !this.allEndTimesValid ||
@@ -27,6 +28,25 @@ export class BookingClass {
       this.emailInvalid ||
       this.dateInvalid
     );
+  }
+
+  get durationsInvalid() {
+    const durations = this.events.map(
+      (event) => event.endTime.code - event.startTime.code
+    );
+    const totalDuration = durations.reduce((sum, d) => sum + d, 0);
+
+    if (totalDuration < 4) {
+      return this.events.length === 1
+      ? "The total duration of the event must be greater than 4 hours"
+      : "The total duration between both events must be greater than 4 hours";
+    }
+    if (totalDuration > 10) {
+      return this.events.length === 1
+      ? "The total duration of the event must be less than 10 hours"
+      : "The total duration between both events must be less than 10 hours";
+    }
+    return null;
   }
 
   get firstNameInvalid() {
