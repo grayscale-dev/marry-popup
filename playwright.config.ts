@@ -32,7 +32,7 @@ export default defineConfig({
     trace: "on-first-retry",
     testIdAttribute: "data-testid",
     baseURL: "http://localhost:3000",
-    headless: false,
+    headless: true,
   },
 
   /* Configure projects for major browsers */
