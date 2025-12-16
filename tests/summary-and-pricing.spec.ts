@@ -2,8 +2,6 @@ import { test, expect } from "@playwright/test";
 import { FormPage } from "./pages/form-page";
 import { SummaryPage } from "./pages/summary-page";
 
-// Summary and Pricing Calculation Tests
-
 test.describe("Summary and Pricing Calculation", () => {
   test("Displays correct info after form submit", async ({ page }) => {
     await page.goto("");
